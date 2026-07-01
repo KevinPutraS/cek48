@@ -1,0 +1,119 @@
+/* CEK48 5.0 — Midnight Orbit
+   Single source of truth. Legacy theme styles are intentionally not imported. */
+
+:root {
+  color-scheme: dark;
+  --orbit-bg: #080a12;
+  --orbit-bg-soft: #0c0f1a;
+  --orbit-surface: #111522;
+  --orbit-surface-2: #161b2a;
+  --orbit-surface-3: #1b2133;
+  --orbit-border: rgba(255, 255, 255, 0.075);
+  --orbit-border-strong: rgba(255, 255, 255, 0.12);
+  --orbit-text: #f6f7fc;
+  --orbit-text-soft: #a7aec1;
+  --orbit-text-muted: #717a94;
+  --orbit-primary: #ff4f9a;
+  --orbit-primary-soft: rgba(255, 79, 154, 0.13);
+  --orbit-violet: #806cff;
+  --orbit-cyan: #42d5f5;
+  --orbit-success: #48d99b;
+  --orbit-warning: #ffb84d;
+  --orbit-danger: #ff647c;
+  --orbit-sidebar: 220px;
+  --orbit-topbar: 72px;
+  --orbit-radius: 16px;
+  --orbit-radius-sm: 12px;
+  --orbit-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+  --orbit-font:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  min-width: 320px;
+  background: #070910;
+  scroll-behavior: smooth;
+}
+body {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 88% -10%, rgba(128, 108, 255, 0.13), transparent 33%),
+    radial-gradient(circle at 8% 12%, rgba(255, 79, 154, 0.08), transparent 28%),
+    linear-gradient(180deg, #090b14 0%, #080a12 55%, #070910 100%);
+  background-attachment: fixed;
+  color: var(--orbit-text);
+  font-family: var(--orbit-font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  color: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+svg {
+  display: block;
+}
+::selection {
+  background: rgba(255, 79, 154, 0.28);
+  color: #fff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 24%, rgba(66, 213, 245, 0.035), transparent 24%),
+    radial-gradient(circle at 24% 78%, rgba(255, 79, 154, 0.04), transparent 26%);
+}
+
+.route-shell {
+  min-height: 100vh;
+}
+.app-shell {
+  min-height: 100vh;
+  margin-left: var(--orbit-sidebar);
+  padding-top: var(--orbit-topbar);
+}
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -70px;
+  z-index: 9999;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--orbit-primary);
+  color: #fff;
+  font-weight: 800;
+  transition: top 0.16s ease;
+}
+.skip-link:focus {
+  top: 12px;
+}

@@ -1,0 +1,90 @@
+/* Loading and states */
+.nx-schedule-loading {
+  min-height: 360px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 18px;
+  background: var(--schedule-panel);
+}
+
+.nx-schedule-loading__head,
+.nx-schedule-loading__row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.nx-schedule-loading__head > span,
+.nx-schedule-loading__row > span,
+.nx-schedule-loading p strong,
+.nx-schedule-loading p small {
+  display: block;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #101522 25%, #1a2132 45%, #101522 65%);
+  background-size: 300% 100%;
+  animation: orbit-shimmer 1.45s infinite;
+}
+
+.nx-schedule-loading__head > span,
+.nx-schedule-loading__row > span {
+  width: 58px;
+  height: 58px;
+}
+
+.nx-schedule-loading p {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.nx-schedule-loading p strong {
+  width: min(330px, 72%);
+  height: 12px;
+}
+
+.nx-schedule-loading p small {
+  width: min(220px, 52%);
+  height: 8px;
+}
+
+.nx-schedule-state {
+  margin-top: 20px;
+  border-radius: 18px;
+}
+
+.nx-schedule-state__icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--orbit-border);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--orbit-primary);
+  font-size: 17px;
+}
+
+.nx-state-card--error .nx-schedule-state__icon {
+  border-color: rgba(255, 100, 124, 0.24);
+  background: rgba(255, 100, 124, 0.07);
+  color: var(--orbit-danger);
+}
+
+.nx-schedule-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.nx-schedule-state__actions button {
+  margin-top: 6px;
+}

@@ -1,0 +1,215 @@
+/* Next event */
+.nx-next-event {
+  --next-accent: var(--schedule-show);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 62px 70px 46px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--next-accent) 28%, transparent);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--next-accent) 12%, transparent),
+      rgba(128, 108, 255, 0.035) 72%
+    ),
+    var(--schedule-panel-strong);
+  color: inherit;
+  text-align: left;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 46px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nx-next-event::after {
+  content: "";
+  position: absolute;
+  right: -50px;
+  top: -70px;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--next-accent) 14%, transparent),
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.nx-next-event--event {
+  --next-accent: var(--schedule-event);
+}
+.nx-next-event--exclusive {
+  --next-accent: var(--schedule-exclusive);
+}
+
+.nx-next-event:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--next-accent) 48%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 24px 55px rgba(0, 0, 0, 0.28);
+}
+
+.nx-next-event__signal {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+}
+
+.nx-next-event__signal span {
+  color: var(--next-accent);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+}
+
+.nx-next-event__signal i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--next-accent);
+  box-shadow:
+    0 0 0 5px color-mix(in srgb, var(--next-accent) 10%, transparent),
+    0 0 20px color-mix(in srgb, var(--next-accent) 40%, transparent);
+  animation: schedule-signal 1.8s ease-in-out infinite;
+}
+
+.nx-next-event__date {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  padding: 5px 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nx-next-event__date span {
+  color: var(--next-accent);
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.nx-next-event__date strong {
+  margin: 2px 0;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.nx-next-event__date small {
+  color: var(--orbit-text-muted);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.nx-next-event__icon {
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--next-accent) 22%, transparent);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--next-accent) 9%, transparent);
+  color: var(--next-accent);
+}
+
+.nx-next-event__icon svg,
+.nx-event-row__marker svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nx-next-event__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.nx-next-event__copy > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nx-next-event__copy > div span,
+.nx-next-event__copy > div i {
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.nx-next-event__copy > div span {
+  background: color-mix(in srgb, var(--next-accent) 11%, transparent);
+  color: var(--next-accent);
+}
+
+.nx-next-event__copy > div i {
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--orbit-text-muted);
+}
+
+.nx-next-event__copy h2 {
+  overflow: hidden;
+  margin: 7px 0 5px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nx-next-event__copy p {
+  margin: 0;
+  color: var(--orbit-text-muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.nx-next-event__arrow {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 11px;
+  color: var(--orbit-text-muted);
+}
+
+.nx-next-event__arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

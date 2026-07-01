@@ -1,0 +1,123 @@
+/* Rendering performance pass — keep scrolling cheap on desktop and mobile. */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-attachment: scroll;
+}
+
+body::before {
+  position: absolute;
+}
+
+/* Filter docks must remain in document flow and no longer follow scrolling. */
+.nx-member-command,
+.nx-schedule-control-dock {
+  position: relative;
+  top: auto;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Skip layout and paint work for long off-screen lists. */
+.nx-member-card,
+.nx-timeline-day,
+.info-section,
+.quota-list-card,
+.nx-sales-row,
+.nx-lineup-grid > div {
+  content-visibility: auto;
+  contain: layout paint style;
+}
+
+.nx-member-card {
+  contain-intrinsic-size: 360px;
+}
+
+.nx-timeline-day {
+  contain-intrinsic-size: 150px;
+}
+
+.info-section {
+  contain-intrinsic-size: 520px;
+}
+
+.quota-list-card {
+  contain-intrinsic-size: 78px;
+}
+
+.nx-sales-row,
+.nx-lineup-grid > div {
+  contain-intrinsic-size: 58px;
+}
+
+/* Background-position shimmer repaints every frame; opacity pulse stays composited. */
+.skeleton-row,
+.nx-member-card--skeleton,
+.nx-schedule-loading__head > span,
+.nx-schedule-loading__row > span,
+.nx-schedule-loading p strong,
+.nx-schedule-loading p small {
+  background: #151b2a;
+  background-size: auto;
+  animation-name: orbit-skeleton-pulse;
+  animation-duration: 1.25s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes orbit-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.52;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Promote only elements that actually animate or slide. */
+.orbit-spinner,
+.nx-member-refresh:disabled svg,
+.nx-profile-detail-state.is-loading > span,
+.info-status-orbit,
+.nx-next-event__signal i {
+  will-change: transform, opacity;
+}
+
+@media (max-width: 820px), (pointer: coarse) {
+  /* Transparent backdrop blur is one of the largest mobile scroll costs. */
+  .nx-members-overview article,
+  .nx-schedule-hero__calendar,
+  .info-status-card,
+  .nx-member-card__team,
+  .nx-member-card__saved,
+  .nx-member-favorite,
+  .nx-schedule-sheet__footer,
+  .nx-profile-backdrop,
+  .nx-detail-backdrop {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nx-members-overview article {
+    background: rgba(10, 14, 24, 0.94);
+  }
+
+  .nx-schedule-hero__calendar,
+  .info-status-card {
+    background-color: rgba(16, 21, 34, 0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

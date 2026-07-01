@@ -1,0 +1,231 @@
+/* =====================================================
+   QuotaPage stability fixes
+   Keeps the existing visual language while fixing stacking,
+   missing controls, and responsive overflow.
+   ===================================================== */
+
+.monitor-frame,
+.query-control,
+.data-panel,
+.desktop-control-panel,
+.mobile-controls,
+.mobile-search-row,
+.mobile-filter-secondary {
+  min-width: 0;
+}
+
+/* Compatibility with the current monitor shell and the audited redesign shell. */
+.query-control,
+.nx-monitor-command,
+.nx-monitor-filter-dock {
+  position: relative;
+  overflow: visible;
+}
+
+.nx-monitor-command,
+.nx-monitor-filter-dock {
+  overflow: visible;
+}
+
+.query-control,
+.nx-monitor-command {
+  z-index: 30;
+}
+
+.nx-monitor-command {
+  z-index: 30;
+}
+
+.data-panel,
+.nx-monitor-results {
+  position: relative;
+  z-index: 1;
+}
+
+.custom-field.is-open {
+  z-index: 500;
+}
+
+.custom-select-menu {
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--orbit-border-strong) transparent;
+}
+
+.custom-select-option.is-active {
+  background: rgba(255, 255, 255, 0.045);
+  color: #fff;
+}
+
+/* The desktop control row renders six controls. */
+.desktop-control-panel {
+  grid-template-columns:
+    minmax(190px, 1.35fr)
+    minmax(210px, 1.55fr)
+    minmax(130px, 0.9fr)
+    minmax(130px, 0.9fr)
+    minmax(118px, auto)
+    auto;
+  align-items: end;
+}
+
+.compact-search-field,
+.mobile-search-field {
+  min-width: 0;
+}
+
+.favorite-filter-button {
+  align-self: end;
+  min-width: 118px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 11px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 11px;
+  background: transparent;
+  color: var(--orbit-text-muted);
+  cursor: pointer;
+}
+
+.favorite-filter-button > span:first-child {
+  flex: 0 0 auto;
+  color: #747d95;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.favorite-filter-button > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+  text-align: left;
+}
+
+.favorite-filter-button strong,
+.favorite-filter-button small {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.favorite-filter-button strong {
+  font-size: 8px;
+  letter-spacing: 0.06em;
+}
+
+.favorite-filter-button small {
+  color: var(--orbit-text-muted);
+  font-size: 7px;
+}
+
+.favorite-filter-button.is-active {
+  border-color: rgba(255, 211, 105, 0.3);
+  background: rgba(255, 211, 105, 0.075);
+  color: #fff4c4;
+}
+
+.favorite-filter-button.is-active > span:first-child,
+.favorite-inline-mark {
+  color: #ffd369;
+}
+
+.favorite-filter-button:disabled,
+.reset-button:disabled,
+.mobile-filter-toggle:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.desktop-reset-button {
+  min-width: 64px;
+}
+
+.quota-favorite-button {
+  width: 23px;
+  height: 23px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #5f6880;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.quota-favorite-button:hover,
+.quota-favorite-button:focus-visible {
+  border-color: rgba(255, 211, 105, 0.2);
+  background: rgba(255, 211, 105, 0.06);
+  color: #ffd369;
+}
+
+.quota-favorite-button.is-active {
+  color: #ffd369;
+}
+
+.quota-list-card.is-favorite {
+  border-color: rgba(255, 211, 105, 0.14);
+}
+
+.member-photo.photo-fallback {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(128, 108, 255, 0.22), transparent 42%),
+    var(--orbit-surface-3);
+}
+
+.share-link-button {
+  white-space: nowrap;
+}
+
+.mobile-search-row,
+.mobile-filter-secondary,
+.mobile-filter-toggle {
+  display: none;
+}
+
+/* Kept for the currently unused compact quota bar helper. */
+.quota-progress {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.quota-track {
+  min-width: 0;
+  height: 3px;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.quota-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--orbit-success);
+}
+
+.quota-fill-low {
+  background: var(--orbit-warning);
+}
+.quota-fill-sold {
+  background: var(--orbit-danger);
+}
+.quota-fill-unknown {
+  background: #69728a;
+}
+
+/* Pastikan tombol favorit selalu berada di lapisan interaktif. */
+.quota-favorite-button {
+  position: relative;
+  z-index: 1;
+}

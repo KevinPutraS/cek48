@@ -1,0 +1,77 @@
+/* Theater ticket quota summary. FCFS only adds the remaining-quota card. */
+.nx-ticket-quota {
+  margin-top: 16px;
+  padding: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background:
+    linear-gradient(125deg, rgba(66, 213, 245, 0.055), rgba(128, 108, 255, 0.035)),
+    rgba(12, 16, 27, 0.78);
+}
+
+.nx-ticket-quota__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.nx-ticket-quota__grid.has-fcfs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.nx-ticket-quota__grid article {
+  min-width: 0;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.nx-ticket-quota__grid article.is-remaining {
+  border-color: rgba(72, 217, 155, 0.22);
+  background: rgba(72, 217, 155, 0.055);
+}
+
+.nx-ticket-quota__grid span {
+  color: var(--orbit-text-muted);
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+}
+
+.nx-ticket-quota__grid article.is-remaining span {
+  color: var(--orbit-success);
+}
+
+.nx-ticket-quota__grid strong {
+  margin-top: 7px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.7px;
+}
+
+.nx-ticket-quota__grid small {
+  margin-top: 5px;
+  overflow: hidden;
+  color: var(--orbit-text-muted);
+  font-size: 7px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 820px) {
+  .nx-ticket-quota {
+    padding: 14px;
+  }
+
+  .nx-ticket-quota__grid,
+  .nx-ticket-quota__grid.has-fcfs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

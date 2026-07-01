@@ -1,0 +1,585 @@
+/* Detail sheet */
+.nx-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  background: rgba(2, 4, 9, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.nx-schedule-sheet {
+  position: relative;
+  width: min(780px, 100%);
+  max-height: 100vh;
+  overflow-y: auto;
+  background: #0b0f19;
+  box-shadow: -28px 0 80px rgba(0, 0, 0, 0.42);
+}
+
+.nx-schedule-sheet__handle {
+  display: none;
+}
+
+.nx-schedule-sheet__accent {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--orbit-primary),
+    var(--orbit-violet),
+    var(--orbit-cyan)
+  );
+}
+
+.nx-schedule-sheet__head {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  padding: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    radial-gradient(circle at 80% 0%, rgba(128, 108, 255, 0.1), transparent 42%),
+    #0d111c;
+}
+
+.nx-schedule-sheet__badge {
+  width: 76px;
+  height: 92px;
+  flex: 0 0 76px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 79, 154, 0.2);
+  border-radius: 15px;
+  background: rgba(255, 79, 154, 0.075);
+  color: var(--orbit-primary);
+}
+
+.nx-schedule-sheet__badge svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nx-setlist-poster {
+  position: relative;
+  width: 118px;
+  flex: 0 0 118px;
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 15px;
+  background: var(--orbit-surface);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
+}
+
+.nx-setlist-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 58%, rgba(2, 4, 9, 0.76));
+}
+
+.nx-setlist-poster img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.nx-setlist-poster figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  color: #fff;
+  font-size: 6px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-align: center;
+}
+
+.nx-schedule-sheet__title {
+  min-width: 0;
+  flex: 1;
+  align-self: center;
+  padding-right: 46px;
+}
+
+.nx-schedule-sheet__eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.nx-schedule-sheet__eyebrow span,
+.nx-schedule-sheet__eyebrow i,
+.nx-schedule-sheet__eyebrow b {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--orbit-primary-soft);
+  color: var(--orbit-primary);
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.nx-schedule-sheet__eyebrow i {
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--orbit-text-muted);
+}
+
+.nx-schedule-sheet__eyebrow b {
+  background: rgba(255, 184, 77, 0.08);
+  color: var(--orbit-warning);
+}
+
+.nx-schedule-sheet__head h2 {
+  margin: 10px 0 7px;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+}
+
+.nx-schedule-sheet__head p {
+  margin: 0;
+  color: var(--orbit-text-muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.nx-setlist-poster-name {
+  width: max-content;
+  max-width: 100%;
+  display: block;
+  margin-top: 10px;
+  overflow: hidden;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 79, 154, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 79, 154, 0.075);
+  color: var(--orbit-primary);
+  font-size: 7px;
+  font-weight: 850;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nx-schedule-sheet__close {
+  position: absolute;
+  z-index: 4;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--orbit-text-muted);
+  cursor: pointer;
+}
+
+.nx-schedule-sheet__close:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.nx-schedule-sheet__close svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.nx-schedule-sheet__body {
+  padding: 20px 22px 26px;
+}
+
+.nx-detail-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.nx-detail-overview--event {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.nx-detail-overview > div {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 12px;
+  background: var(--orbit-surface);
+}
+
+.nx-detail-overview span,
+.nx-detail-copy > span,
+.nx-block-title span {
+  color: var(--orbit-text-muted);
+  font-size: 7px;
+  font-weight: 880;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nx-detail-overview strong {
+  display: block;
+  overflow: hidden;
+  margin-top: 6px;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+}
+
+.nx-detail-copy {
+  margin-top: 10px;
+  padding: 14px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 12px;
+  background: var(--orbit-surface);
+}
+
+.nx-detail-copy p {
+  margin: 8px 0 0;
+  color: var(--orbit-text-soft);
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+.nx-lineup-block,
+.nx-sales-block {
+  margin-top: 22px;
+}
+
+.nx-favorite-lineup-note {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 79, 154, 0.2);
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 79, 154, 0.08),
+    rgba(128, 108, 255, 0.04)
+  );
+}
+
+.nx-favorite-lineup-note span {
+  color: var(--orbit-primary);
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+}
+
+.nx-favorite-lineup-note strong {
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.nx-block-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.nx-block-title h3 {
+  margin: 4px 0 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.nx-block-title > strong {
+  min-width: 30px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--orbit-text-soft);
+  font-size: 9px;
+}
+
+.nx-lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.nx-lineup-grid > div {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 11px;
+  background: var(--orbit-surface);
+}
+
+.nx-lineup-grid > div.is-favorite {
+  border-color: rgba(255, 79, 154, 0.23);
+  background: rgba(255, 79, 154, 0.045);
+}
+
+.nx-lineup-grid > div > span {
+  color: var(--orbit-primary);
+  font-size: 7px;
+  font-weight: 900;
+}
+
+.nx-lineup-grid p {
+  min-width: 0;
+  margin: 0;
+}
+
+.nx-lineup-grid p strong {
+  display: block;
+  overflow: hidden;
+  color: #fff;
+  font-size: 9px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nx-lineup-grid p small {
+  display: block;
+  overflow: hidden;
+  margin-top: 3px;
+  color: var(--orbit-text-muted);
+  font-size: 7px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nx-lineup-grid button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #59627a;
+  cursor: pointer;
+}
+
+.nx-lineup-grid button.is-active {
+  background: rgba(255, 79, 154, 0.12);
+  color: var(--orbit-primary);
+}
+
+.nx-birthday-note {
+  display: grid;
+  gap: 5px;
+  margin-top: 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 184, 77, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 184, 77, 0.055);
+}
+
+.nx-birthday-note span {
+  color: var(--orbit-warning);
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+}
+
+.nx-birthday-note strong {
+  color: #fff;
+  font-size: 10px;
+}
+
+.nx-sales-list {
+  display: grid;
+  gap: 8px;
+}
+
+.nx-sales-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 14px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 12px;
+  background: var(--orbit-surface);
+}
+
+.nx-sales-row > div {
+  display: grid;
+  gap: 4px;
+}
+
+.nx-sales-row > div strong {
+  color: #fff;
+  font-size: 10px;
+}
+
+.nx-sales-row > div span {
+  color: var(--orbit-primary);
+  font-size: 7px;
+  font-weight: 850;
+}
+
+.nx-sales-row p {
+  margin: 0;
+  color: var(--orbit-text-muted);
+  font-size: 8px;
+  line-height: 1.55;
+  text-align: right;
+}
+
+.nx-empty-lineup,
+.nx-detail-loading,
+.nx-detail-error {
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  padding: 24px;
+  color: var(--orbit-text-muted);
+  text-align: center;
+}
+
+.nx-detail-loading > span {
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--orbit-border);
+  border-top-color: var(--orbit-primary);
+  border-radius: 50%;
+  animation: orbit-spin 0.8s linear infinite;
+}
+
+.nx-detail-loading strong,
+.nx-detail-error strong {
+  color: #fff;
+  font-size: 12px;
+}
+
+.nx-detail-loading small,
+.nx-detail-error p {
+  margin: 0;
+  color: var(--orbit-text-muted);
+  font-size: 9px;
+}
+
+.nx-detail-error > span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(255, 100, 124, 0.08);
+  color: var(--orbit-danger);
+  font-weight: 900;
+}
+
+.nx-detail-error button {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--orbit-primary);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.nx-schedule-sheet__footer {
+  position: sticky;
+  z-index: 5;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 15, 25, 0.94);
+  backdrop-filter: blur(18px);
+}
+
+.nx-schedule-sheet__footer > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.nx-schedule-sheet__footer > div span {
+  color: var(--orbit-text-muted);
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.nx-schedule-sheet__footer > div strong {
+  overflow: hidden;
+  color: #fff;
+  font-size: 9px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nx-schedule-sheet__footer a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--orbit-primary), var(--orbit-violet));
+  color: #fff;
+  font-size: 9px;
+  font-weight: 850;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(255, 79, 154, 0.16);
+}
+
+.nx-schedule-sheet__footer a svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes schedule-signal {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.88);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

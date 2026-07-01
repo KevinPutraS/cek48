@@ -1,0 +1,238 @@
+/* =====================================================
+   GLOBAL RESPONSIVE + STABILITY
+   Page-specific responsive rules live in each page stylesheet.
+   ===================================================== */
+
+.offline-notice {
+  position: fixed;
+  z-index: 500;
+  top: 82px;
+  right: 18px;
+  max-width: 320px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 184, 77, 0.25);
+  border-radius: 11px;
+  background: #241b0d;
+  color: #ffd28a;
+  font-size: 9px;
+  box-shadow: var(--orbit-shadow);
+}
+
+.route-loader {
+  min-height: calc(100vh - var(--orbit-topbar));
+  margin-left: var(--orbit-sidebar);
+  padding-top: var(--orbit-topbar);
+  display: grid;
+  place-items: center;
+  color: var(--orbit-text-muted);
+}
+
+.app-crash-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  background: var(--orbit-bg);
+  text-align: center;
+}
+
+.app-crash-screen > div {
+  max-width: 460px;
+  padding: 26px;
+  border: 1px solid var(--orbit-border);
+  border-radius: 17px;
+  background: var(--orbit-surface);
+}
+
+:focus-visible {
+  outline: 2px solid rgba(255, 79, 154, 0.65);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1120px) {
+  :root {
+    --orbit-sidebar: 190px;
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --orbit-topbar: 58px;
+  }
+
+  body {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+
+  .desktop-sidebar {
+    display: none;
+  }
+
+  .app-shell {
+    margin-left: 0;
+    padding-top: var(--orbit-topbar);
+  }
+
+  .topbar {
+    left: 0;
+    height: var(--orbit-topbar);
+    padding: 0 13px;
+    gap: 10px;
+  }
+
+  .topbar-mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .topbar-mobile-logo {
+    width: 29px;
+    height: 29px;
+    object-fit: contain;
+  }
+
+  .topbar-mobile-wordmark {
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.7px;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .topbar-mobile-cek {
+    color: var(--orbit-text);
+  }
+
+  .topbar-mobile-number {
+    color: var(--orbit-primary);
+  }
+
+  .topbar-title {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 7px;
+  }
+
+  .topbar-status {
+    min-height: 29px;
+    gap: 5px;
+    padding: 0 8px;
+  }
+
+  .topbar-status strong {
+    font-size: 7px;
+  }
+
+  .topbar-status small {
+    display: none;
+  }
+
+  .topbar-status-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .refresh-button,
+  .topbar-info-link {
+    width: 34px;
+    height: 34px;
+  }
+
+  .refresh-button {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .refresh-button span {
+    display: none;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    z-index: 100;
+    left: 10px;
+    right: 10px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    height: 58px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 5px;
+    border: 1px solid var(--orbit-border-strong);
+    border-radius: 17px;
+    background: #0d111b;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.34);
+  }
+
+  .bottom-nav-item {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border-radius: 12px;
+    color: #6e7790;
+    font-size: 8px;
+    font-weight: 750;
+  }
+
+  .bottom-nav-item.is-active {
+    color: #fff;
+    background: var(--orbit-primary-soft);
+  }
+
+  .bottom-nav-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .bottom-nav-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .nx-page,
+  .main-container {
+    width: calc(100% - 24px);
+    padding-top: 14px;
+    padding-bottom: 28px;
+  }
+
+  .offline-notice {
+    top: 66px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+  }
+
+  .route-loader {
+    margin-left: 0;
+    padding-top: var(--orbit-topbar);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  * {
+    scroll-behavior: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
