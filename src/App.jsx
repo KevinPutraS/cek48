@@ -7,8 +7,10 @@ import DesktopNav from "./components/DesktopNav";
 import OfflineNotice from "./components/OfflineNotice";
 import RouteLoader from "./components/RouteLoader";
 import ScrollToTop from "./components/ScrollToTop";
+import NewsDetailPage from "./pages/NewsDetailPage"; // Import page baru
 
 const InfoPage = lazy(() => import("./pages/InfoPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage"));
 const MembersPage = lazy(() => import("./pages/MembersPage"));
 const QuotaPage = lazy(() => import("./pages/QuotaPage"));
 const SchedulePage = lazy(() => import("./pages/SchedulePage"));
@@ -32,6 +34,8 @@ export default function App() {
               <Route path="/quota" element={<QuotaPage />} />
               <Route path="/members" element={<MembersPage />} />
               <Route path="/schedule" element={<SchedulePage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/news/:slug" element={<NewsDetailPage />} />
               <Route path="/info" element={<InfoPage />} />
               <Route path="*" element={<Navigate to="/quota" replace />} />
             </Routes>

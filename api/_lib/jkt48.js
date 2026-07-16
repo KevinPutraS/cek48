@@ -6,6 +6,10 @@ export const JKT48_WAITING_ROOM_MESSAGE =
 
 export const JKT48_ENDPOINTS = {
   events: `${JKT48_BASE_URL}/api/v1/exclusives?lang=id`,
+
+  news: (page = 1) =>
+    `${JKT48_BASE_URL}/api/v1/news?lang=id&page=${page}`,
+
   quota: (code) =>
     `${JKT48_BASE_URL}/api/v1/exclusives/${encodeURIComponent(code)}?lang=id`,
 };

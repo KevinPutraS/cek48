@@ -22,6 +22,7 @@
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "dependencies": {
+    "dompurify": "^3.4.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.18.0"
@@ -31,6 +32,8 @@
     "@babel/traverse": "^7.29.7",
     "@eslint/js": "^9.39.4",
     "@playwright/test": "^1.61.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
@@ -39,6 +42,7 @@
     "eslint-plugin-react-refresh": "^0.4.26",
     "globals": "^16.5.0",
     "prettier": "^3.8.4",
+    "typescript": "^6.0.3",
     "vite": "^6.0.5"
   }
 }

@@ -26,6 +26,15 @@ function ScheduleIcon() {
   );
 }
 
+function NewsIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 5h14v14H5z" />
+      <path d="M8 9h8M8 13h8M8 17h5" />
+    </svg>
+  );
+}
+
 function InfoIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -37,9 +46,9 @@ function InfoIcon() {
 
 const NAV_ITEMS = [
   { to: "/quota", label: "Monitor", icon: MonitorIcon },
+  { to: "/news", label: "News", icon: NewsIcon },
   { to: "/members", label: "Member", icon: MemberIcon },
   { to: "/schedule", label: "Jadwal", icon: ScheduleIcon },
-  { to: "/info", label: "Info", icon: InfoIcon },
 ];
 
 export default function DesktopNav() {

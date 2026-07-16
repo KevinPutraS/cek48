@@ -1,4 +1,9 @@
-import { fetchWithTimeout, getPublicError, sendJson } from "./_lib/jkt48.js";
+import {
+  fetchWithTimeout,
+  getPublicError,
+  sendJson,
+  upstreamHeaders,
+} from "./_lib/jkt48.js";
 
 const ALLOWED_HOSTS = new Set(["jkt48.com", "www.jkt48.com"]);
 const ALLOWED_IMAGE_TYPES = new Set([
@@ -51,8 +56,8 @@ async function fetchAllowedImage(url, redirectCount = 0) {
     url.toString(),
     {
       headers: {
-        Accept: "image/avif,image/webp,image/*,*/*;q=0.8",
-        "User-Agent": "CEK48/5.4",
+          ...upstreamHeaders,
+          Accept: "image/avif,image/webp,image/*,*/*;q=0.8",
       },
       redirect: "manual",
     },
@@ -113,14 +118,34 @@ export default async function handler(req, res) {
       throw error;
     }
 
-    const contentType = String(upstream.headers.get("content-type") || "")
+    let contentType = String(upstream.headers.get("content-type") || "")
       .split(";")[0]
       .trim()
       .toLowerCase();
-    const contentLength = Number(upstream.headers.get("content-length") || 0);
+
+    const contentLength = Number(
+      upstream.headers.get("content-length") || 0
+    );
+
+    // JKT48 kadang mengirim gambar dengan application/octet-stream
+    if (contentType === "application/octet-stream") {
+      const path = imageUrl.pathname.toLowerCase();
+
+      if (path.endsWith(".png")) {
+        contentType = "image/png";
+      } else if (path.endsWith(".webp")) {
+        contentType = "image/webp";
+      } else if (path.endsWith(".gif")) {
+        contentType = "image/gif";
+      } else if (path.endsWith(".avif")) {
+        contentType = "image/avif";
+      } else {
+        contentType = "image/jpeg";
+      }
+    }
 
     if (!ALLOWED_IMAGE_TYPES.has(contentType)) {
-      const error = new Error("Respons yang diterima bukan gambar raster.");
+      const error = new Error(`Unsupported image type: ${contentType}`);
       error.status = 502;
       error.code = "INVALID_IMAGE_CONTENT_TYPE";
       throw error;
@@ -154,6 +179,7 @@ export default async function handler(req, res) {
     res.end(buffer);
     return undefined;
   } catch (error) {
+    console.error(error);
     const failure = getPublicError(error, "Gagal mengambil gambar member.");
     return sendJson(res, failure.status, {
       status: false,

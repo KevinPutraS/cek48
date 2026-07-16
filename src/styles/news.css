@@ -1,0 +1,154 @@
+/* ==========================================================================
+   MOBILE-FIRST UI: NEWS PAGE (MATCHING MEMBER UNIVERSE THEME)
+   ========================================================================== */
+
+.nx-news-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 80px 16px; /* Jarak atas dilonggarkan, sisi kiri-kanan proporsional */
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- HERO SECTION --- */
+.cek-hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 34px;
+  border-radius: 19px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(128, 108, 255, 0.22), transparent 31%),
+    radial-gradient(circle at 17% 120%, rgba(255, 79, 154, 0.13), transparent 36%),
+    linear-gradient(135deg, #121725 0%, #0d121d 58%, #121326 100%);
+}
+
+.cek-hero-section h1 { 
+  font-size: clamp(34px, 4vw, 56px); 
+  font-weight: 900; 
+  margin: 10px 0 0; 
+  line-height: 0.98; 
+  letter-spacing: -2.2px; 
+  color: #ffffff; 
+}
+
+.cek-hero-section h1 span { color: rgba(255, 79, 154, 1); }
+
+.cek-hero-section p { 
+  margin-top: 16px; 
+  color: #b5bbcc;
+  font-size: 14px; 
+  line-height: 1.7; 
+  max-width: 500px; 
+}
+
+/* --- LATEST NEWS TEXT-ONLY CARDS --- */
+.cek-news-list-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 13px;
+}
+
+@media (min-width: 768px) { .cek-news-list-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .cek-news-list-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.cek-news-text-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #101522;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 18px;
+  padding: 15px 15px 14px 16px;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cek-news-text-card::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--card-accent, #ff4f9a);
+  opacity: 0.7;
+}
+
+.cek-news-text-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--card-accent) 34%, transparent);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.23);
+}
+
+.cek-ntc-header { margin-bottom: 12px; }
+
+.cek-cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 9px;
+  min-height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 9px;
+  background: rgba(7, 10, 17, 0.76);
+  color: #fff;
+  font-size: 7px;
+  font-weight: 850;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.cek-cat-badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--card-accent, #ff4f9a);
+}
+
+.cek-news-text-card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f7f8fc;
+  margin: 0 0 14px 0;
+  line-height: 1.35;
+}
+
+.cek-ntc-footer { 
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cek-date { color: #858ea4; font-size: 9px; font-weight: 600; }
+.cek-card-read-more { color: #616b81; font-size: 8px; font-weight: 760; transition: color 0.2s; }
+.cek-news-text-card:hover .cek-card-read-more { color: var(--card-accent); }
+
+/* States Info */
+.nx-news-state-info { text-align: center; padding: 4rem 1rem; color: #7e879d; }
+.nx-news-state-info.is-error p { color: #ff8ca1; }
+
+/* =======================================================
+   MOBILE ADJUSTMENTS
+   ======================================================= */
+@media (max-width: 820px) {
+  .cek-hero-section {
+    padding: 24px 20px;
+    border-radius: 19px;
+  }
+  .cek-hero-section h1 {
+    margin-top: 8px;
+    font-size: clamp(30px, 8vw, 42px);
+    letter-spacing: -1.5px;
+  }
+  .cek-hero-section p {
+    font-size: 12px;
+    line-height: 1.62;
+  }
+}

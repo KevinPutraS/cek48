@@ -1,0 +1,190 @@
+/* ==========================================================================
+   MOBILE-FIRST UI: NEWS DETAIL PAGE (MATCHING PROFILE SHEET THEME)
+   ========================================================================== */
+
+.nx-news-detail-page {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 24px 16px 80px 16px; /* Memberi nafas di bagian atas dan presisi di kiri-kanan */
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- TOP NAVIGATION --- */
+.cek-detail-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.cek-nav-actions { display: flex; gap: 0.5rem; }
+
+.nx-profile-favorite { 
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: #111624; 
+  color: #c4cad9;
+  font-size: 10px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.nx-profile-favorite:hover {
+  background: #151b2d;
+}
+
+/* --- HERO BANNER --- */
+.cek-article-hero { 
+  position: relative; 
+  width: 100%; 
+  aspect-ratio: 16/9; 
+  border-radius: 18px; 
+  overflow: hidden; 
+  margin-bottom: 20px; 
+  background: #090d16; 
+  border: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.cek-article-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset -1px 0 rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.cek-article-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+.cek-hero-shade { 
+  position: absolute; 
+  inset: 0; 
+  background: 
+    linear-gradient(180deg, transparent 42%, rgba(5, 7, 12, 0.88) 100%),
+    linear-gradient(90deg, transparent 68%, rgba(5, 7, 12, 0.22)); 
+  pointer-events: none;
+}
+
+.cek-hero-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1.5rem; z-index: 2; }
+
+.cek-hero-content .cek-cat-badge { 
+  display: inline-flex; 
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 0.75rem; 
+  padding: 0 9px;
+  min-height: 28px;
+  background: rgba(8, 11, 18, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 9px;
+  font-size: 8px;
+  font-weight: 850;
+  backdrop-filter: blur(10px);
+}
+.cek-hero-content .cek-cat-badge i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--card-accent);
+}
+
+.cek-hero-content h1 { 
+  font-size: clamp(23px, 5vw, 32px); 
+  font-weight: 900; 
+  margin: 0 0 0.5rem 0; 
+  line-height: 1.1; 
+  color: #ffffff; 
+  letter-spacing: -0.8px;
+}
+
+.cek-article-meta-info { display: flex; gap: 0.5rem; font-size: 9px; font-weight: 800; color: #9ba4b9; letter-spacing: 0.11em; }
+
+/* --- MAIN CONTENT CARD BOX --- */
+.cek-article-layout { display: flex; flex-direction: column; }
+
+.cek-article-main-card {
+  position: relative;
+  background: #0d111c; 
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 24px;
+  padding: 32px 20px; /* Padding atas ditambahkan agar teks tidak terlalu menempel ke bingkai box */
+  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.52);
+  overflow: hidden;
+}
+
+/* Garis Aksen Vertikal */
+.cek-article-main-card::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--card-accent, #ff4f9a); 
+}
+
+/* =======================================================
+   TYPOGRAPHY & CONTENT PARSER
+   ======================================================= */
+.html-parsed-content,
+.html-parsed-content * {
+  font-family: inherit !important;
+}
+
+.html-parsed-content {
+  font-size: 13px; 
+  line-height: 1.7;
+}
+
+.html-parsed-content p {
+  margin-bottom: 1.5rem;
+  color: #dce5f0 !important; 
+}
+.html-parsed-content p:first-of-type {
+  margin-top: 0; /* Memastikan spasi berlebih dari p tidak menabrak bingkai */
+}
+
+.html-parsed-content h1, .html-parsed-content h2, .html-parsed-content h3 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.html-parsed-content a {
+  color: #71dff2 !important; 
+  text-decoration: none;
+  font-weight: 700;
+}
+.html-parsed-content a:hover { text-decoration: underline; }
+
+.html-parsed-content table {
+  width: 100% !important;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: #111725 !important; 
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.html-parsed-content th, .html-parsed-content td {
+  padding: 12px 13px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: #e7eaf3 !important;
+  vertical-align: top;
+}
+.html-parsed-content th { 
+  background: rgba(255, 255, 255, 0.02) !important; 
+  font-weight: 800; 
+  text-align: left; 
+  color: #8992a8 !important; 
+}
+
+/* --- DESKTOP ADJUSTMENTS --- */
+@media (min-width: 768px) {
+  .cek-article-hero { aspect-ratio: 21/9; margin-bottom: 34px; }
+  .cek-hero-content { padding: 2.5rem; }
+  .cek-article-main-card { padding: 34px 46px; } 
+  .html-parsed-content { font-size: 15px; }
+}
