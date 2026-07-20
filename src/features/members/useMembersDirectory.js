@@ -191,9 +191,30 @@ export default function useMembersDirectory() {
     setError("");
 
     try {
+      // 1. CEK CACHE: Gunakan data di Session Storage jika umurnya belum 5 menit
+      const cacheKey = "jkt48_members_list";
+      const cachedData = sessionStorage.getItem(cacheKey);
+
+      if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        const isCacheValid = (Date.now() - timestamp) < 300000; // 300.000 ms = 5 menit
+
+        if (isCacheValid) {
+          const normalizedMembers = applyBirthdayCache(normalizeMemberList(data));
+          if (requestId !== requestIdRef.current) return;
+          
+          setMembers(normalizedMembers);
+          setLastUpdated(new Date(timestamp)); // Tampilkan waktu terakhir kali di-fetch
+          void hydrateMemberBirthdays(normalizedMembers);
+          setLoading(false);
+          return; // STOP: Jangan lanjut fetch ke server
+        }
+      }
+
+      // 2. FETCH SERVER: Jika cache kosong atau sudah lewat 5 menit
       const response = await fetch("/api/jkt48-members", {
         headers: { Accept: "application/json" },
-        cache: "no-store",
+        cache: "no-store", // Tetap no-store agar browser tidak ikut campur, kita kontrol manual via sessionStorage
         signal: controller.signal,
       });
 
@@ -216,6 +237,12 @@ export default function useMembersDirectory() {
       if (!Array.isArray(result)) {
         throw new Error("Format data member tidak dikenali.");
       }
+
+      // 3. SIMPAN CACHE: Simpan hasil fetch segar ke Session Storage
+      sessionStorage.setItem(cacheKey, JSON.stringify({
+        data: result,
+        timestamp: Date.now()
+      }));
 
       if (requestId !== requestIdRef.current) return;
 

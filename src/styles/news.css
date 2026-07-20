@@ -3,19 +3,20 @@
    ========================================================================== */
 
 .nx-news-page {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 24px 16px 80px 16px; /* Jarak atas dilonggarkan, sisi kiri-kanan proporsional */
-  font-family: system-ui, -apple-system, sans-serif;
+  padding: 12px 20px 60px;
 }
 
 /* --- HERO SECTION --- */
 .cek-hero-section {
   position: relative;
-  display: flex;
+  display: block;
+  min-height: 220px;
   flex-direction: column;
   justify-content: center;
-  padding: 34px;
+  padding:28px;
   border-radius: 19px;
   margin-bottom: 24px;
   overflow: hidden;
@@ -151,4 +152,12 @@
     font-size: 12px;
     line-height: 1.62;
   }
+}
+
+@media (max-width:820px){
+
+    .nx-news-page{
+        padding:12px 10px 90px;
+    }
+
 }

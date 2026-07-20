@@ -1,190 +1,394 @@
-/* ==========================================================================
-   MOBILE-FIRST UI: NEWS DETAIL PAGE (MATCHING PROFILE SHEET THEME)
-   ========================================================================== */
+/* =========================================
+   NS THEME: Mobile-First Seamless Reader
+   ========================================= */
 
-.nx-news-detail-page {
-  max-width: 950px;
-  margin: 0 auto;
-  padding: 24px 16px 80px 16px; /* Memberi nafas di bagian atas dan presisi di kiri-kanan */
-  font-family: system-ui, -apple-system, sans-serif;
+:root {
+  --ns-bg: #0d121d;
+  --ns-card: #101522;
+  --ns-text-main: #ffffff;
+  --ns-text-dim: #94a0b8;
+  --ns-border: rgba(255, 255, 255, 0.08);
+  --ns-glass: rgba(255, 255, 255, 0.04);
 }
 
-/* --- TOP NAVIGATION --- */
-.cek-detail-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-.cek-nav-actions { display: flex; gap: 0.5rem; }
+.ns-layout {
+  background-color: var(--ns-bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+}
 
-.nx-profile-favorite { 
-  min-height: 40px;
+.ns-container {
+  width: 100%;
+  max-width: 720px; /* Ukuran optimal untuk membaca */
+}
+
+/* --- THE SEAMLESS CARD --- */
+.ns-article-card {
+  background-color: var(--ns-card);
+  border: 1px solid var(--ns-border);
+  border-radius: 20px;
+  padding: 1.25rem; /* Padding mobile yang pas */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: nsFadeIn 0.4s ease-out forwards;
+}
+
+/* --- 1. TITLE --- */
+.ns-title {
+  font-size: 1.4rem; /* Ukuran mobile-friendly, tidak raksasa */
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ns-text-main);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.01em;
+}
+
+/* --- 2. META DATA --- */
+.ns-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.ns-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 0 14px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 12px;
-  background: #111624; 
-  color: #c4cad9;
-  font-size: 10px;
-  font-weight: 850;
-  cursor: pointer;
+  gap: 0.4rem;
+  background: var(--ns-glass);
+  border: 1px solid var(--ns-border);
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  color: var(--ns-text-main);
+  font-weight: 600;
 }
 
-.nx-profile-favorite:hover {
-  background: #151b2d;
-}
-
-/* --- HERO BANNER --- */
-.cek-article-hero { 
-  position: relative; 
-  width: 100%; 
-  aspect-ratio: 16/9; 
-  border-radius: 18px; 
-  overflow: hidden; 
-  margin-bottom: 20px; 
-  background: #090d16; 
-  border: 1px solid rgba(255, 255, 255, 0.075);
-}
-
-.cek-article-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset -1px 0 rgba(255, 255, 255, 0.06);
-  pointer-events: none;
-}
-
-.cek-article-hero img { width: 100%; height: 100%; object-fit: cover; }
-
-.cek-hero-shade { 
-  position: absolute; 
-  inset: 0; 
-  background: 
-    linear-gradient(180deg, transparent 42%, rgba(5, 7, 12, 0.88) 100%),
-    linear-gradient(90deg, transparent 68%, rgba(5, 7, 12, 0.22)); 
-  pointer-events: none;
-}
-
-.cek-hero-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 1.5rem; z-index: 2; }
-
-.cek-hero-content .cek-cat-badge { 
-  display: inline-flex; 
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 0.75rem; 
-  padding: 0 9px;
-  min-height: 28px;
-  background: rgba(8, 11, 18, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border-radius: 9px;
-  font-size: 8px;
-  font-weight: 850;
-  backdrop-filter: blur(10px);
-}
-.cek-hero-content .cek-cat-badge i {
-  width: 7px;
-  height: 7px;
+.ns-dot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--card-accent);
+  background-color: var(--ns-accent, #ff4f9a);
+  box-shadow: 0 0 8px var(--ns-accent, #ff4f9a);
 }
 
-.cek-hero-content h1 { 
-  font-size: clamp(23px, 5vw, 32px); 
-  font-weight: 900; 
-  margin: 0 0 0.5rem 0; 
-  line-height: 1.1; 
-  color: #ffffff; 
-  letter-spacing: -0.8px;
+.ns-date {
+  color: var(--ns-text-dim);
+  font-weight: 500;
 }
 
-.cek-article-meta-info { display: flex; gap: 0.5rem; font-size: 9px; font-weight: 800; color: #9ba4b9; letter-spacing: 0.11em; }
-
-/* --- MAIN CONTENT CARD BOX --- */
-.cek-article-layout { display: flex; flex-direction: column; }
-
-.cek-article-main-card {
-  position: relative;
-  background: #0d111c; 
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 24px;
-  padding: 32px 20px; /* Padding atas ditambahkan agar teks tidak terlalu menempel ke bingkai box */
-  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.52);
-  overflow: hidden;
-}
-
-/* Garis Aksen Vertikal */
-.cek-article-main-card::before {
-  content: "";
-  position: absolute;
-  z-index: 4;
-  inset: 0 auto 0 0;
-  width: 3px;
-  background: var(--card-accent, #ff4f9a); 
-}
-
-/* =======================================================
-   TYPOGRAPHY & CONTENT PARSER
-   ======================================================= */
-.html-parsed-content,
-.html-parsed-content * {
-  font-family: inherit !important;
-}
-
-.html-parsed-content {
-  font-size: 13px; 
-  line-height: 1.7;
-}
-
-.html-parsed-content p {
+/* --- 3. ACTIONS & NAV (Di bawah judul) --- */
+.ns-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
-  color: #dce5f0 !important; 
-}
-.html-parsed-content p:first-of-type {
-  margin-top: 0; /* Memastikan spasi berlebih dari p tidak menabrak bingkai */
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--ns-border); /* Garis pemisah halus sebelum konten */
 }
 
-.html-parsed-content h1, .html-parsed-content h2, .html-parsed-content h3 {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  letter-spacing: -0.5px;
+.ns-share-group {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.html-parsed-content a {
-  color: #71dff2 !important; 
+.ns-btn {
+  background: var(--ns-glass);
+  border: 1px solid var(--ns-border);
+  color: var(--ns-text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px; /* Lebih kotak ala dashboard modern */
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ns-back-btn {
+  padding: 0.4rem; /* Tombol back kotak presisi */
+}
+
+.ns-btn:active {
+  transform: scale(0.97);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- 4. HERO IMAGE --- */
+.ns-hero {
+  margin: 0 0 1.5rem 0;
+  width: 100%;
+}
+
+.ns-hero img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
+/* --- 5. CONTENT (Teks Artikel) --- */
+.ns-content-body {
+  color: #c9cfdb;
+  font-size: 1rem; /* Ukuran baca standar mobile */
+  line-height: 1.7; /* Line height yang tidak terlalu renggang */
+}
+
+.ns-content-body p {
+  margin-bottom: 1.25rem;
+}
+
+.ns-content-body h2,
+.ns-content-body h3,
+.ns-content-body h4 {
+  color: var(--ns-text-main);
+  font-weight: 600;
+  margin: 2rem 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.ns-content-body h2 { font-size: 1.3rem; }
+.ns-content-body h3 { font-size: 1.15rem; }
+
+.ns-content-body a {
+  color: var(--ns-accent, #ff4f9a);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
 }
-.html-parsed-content a:hover { text-decoration: underline; }
 
-.html-parsed-content table {
-  width: 100% !important;
+.ns-content-body ul, 
+.ns-content-body ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.ns-content-body li {
+  margin-bottom: 0.4rem;
+}
+
+/* Tabel Responsive (Scroll menyamping) */
+.ns-content-body table {
+  width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  background: #111725 !important; 
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
-  border-radius: 12px;
-  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--ns-border);
+  border-radius: 8px;
+  display: block;
+  overflow-x: auto;
 }
 
-.html-parsed-content th, .html-parsed-content td {
-  padding: 12px 13px !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  color: #e7eaf3 !important;
-  vertical-align: top;
-}
-.html-parsed-content th { 
-  background: rgba(255, 255, 255, 0.02) !important; 
-  font-weight: 800; 
-  text-align: left; 
-  color: #8992a8 !important; 
+.ns-content-body th,
+.ns-content-body td {
+  padding: 0.75rem;
+  border: 1px solid var(--ns-border);
+  text-align: left;
+  font-size: 0.9rem;
 }
 
-/* --- DESKTOP ADJUSTMENTS --- */
+.ns-content-body th {
+  background: rgba(255,255,255,0.04);
+  color: var(--ns-text-main);
+}
+
+/* --- STATE (Loading & Error) --- */
+.ns-status-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background: var(--ns-card);
+  border-radius: 20px;
+  border: 1px solid var(--ns-border);
+  text-align: center;
+  color: var(--ns-text-dim);
+  font-size: 0.95rem;
+  gap: 1rem;
+}
+
+.ns-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--ns-border);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: nsSpin 0.8s linear infinite;
+}
+
+@keyframes nsSpin { to { transform: rotate(360deg); } }
+@keyframes nsFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- DESKTOP ENHANCEMENT --- */
 @media (min-width: 768px) {
-  .cek-article-hero { aspect-ratio: 21/9; margin-bottom: 34px; }
-  .cek-hero-content { padding: 2.5rem; }
-  .cek-article-main-card { padding: 34px 46px; } 
-  .html-parsed-content { font-size: 15px; }
+  .ns-layout {
+    padding: 2rem;
+  }
+  
+  .ns-article-card {
+    padding: 2.5rem;
+  }
+
+  .ns-title {
+    font-size: 2rem; /* Judul membesar otomatis hanya jika dibuka di laptop */
+  }
+
+  .ns-content-body {
+    font-size: 1.05rem;
+  }
+}
+
+/* --- PERBAIKAN SPASI CSS (Mengunci elemen kosong dari sisi desain) --- */
+.ns-content-body p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.ns-content-body p:last-child {
+  margin-bottom: 0; /* Paragraf paling bawah tidak boleh punya spasi lebih */
+}
+
+/* Sembunyikan elemen kosong yang lolos */
+.ns-content-body p:empty,
+.ns-content-body br:only-child {
+  display: none !important;
+}
+
+
+/* --- 6. FOOTER ARTIKEL (Redesign: Boxed Metadata) --- */
+.ns-article-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.02); /* Kotak background halus */
+  border: 1px solid var(--ns-border);
+  border-radius: 16px;
+}
+
+.ns-footer-item {
+  display: flex;
+  align-items: flex-start; /* Agar icon sejajar dengan atas teks */
+  gap: 0.75rem;
+}
+
+.ns-fi-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ns-glass);
+  border: 1px solid var(--ns-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ns-text-dim);
+  flex-shrink: 0;
+}
+
+.ns-fi-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ns-fi-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 1px;
+}
+
+.ns-fi-text span {
+  font-size: 0.7rem;
+  color: var(--ns-text-dim);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ns-fi-text strong {
+  font-size: 0.8rem;
+  color: var(--ns-text-main);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ns-fi-text a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: opacity 0.2s;
+}
+
+.ns-fi-text a:hover {
+  opacity: 0.8;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 480px) {
+  .ns-article-footer {
+    grid-template-columns: 1fr 1fr; /* Pasti 2 kolom berjejer */
+    gap: 1.25rem;
+    padding: 1rem;
+    border-radius: 14px;
+  }
+}
+
+/* Penyesuaian khusus agar tidak bertumpuk di HP mungil */
+/* Trik tambahan via CSS untuk menyembunyikan sisa elemen kosong */
+.ns-content-body p:empty,
+.ns-content-body p:blank {
+  display: none !important;
+}
+
+/* Penyesuaian khusus agar Footer padat dan proporsional di HP */
+@media (max-width: 480px) {
+  .ns-article-footer {
+    grid-template-columns: 1fr 1fr; /* Paksa jadi 2 kolom berjejer */
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+  }
+
+  /* Item ke-3 (Sumber) dibikin full width memanjang di bawah */
+  .ns-footer-item:nth-child(3) {
+    grid-column: span 2; 
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.05); /* Garis pemisah halus */
+  }
+
+  /* Kecilkan sedikit icon & teks agar muat berjejer 2 kolom */
+  .ns-fi-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .ns-fi-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .ns-fi-text span {
+    font-size: 0.7rem;
+  }
+  
+  .ns-fi-text strong, 
+  .ns-fi-text a {
+    font-size: 0.75rem;
+  }
 }

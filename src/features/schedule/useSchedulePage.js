@@ -61,15 +61,31 @@ export default function useSchedulePage() {
     setLoading(true);
     setError("");
 
+    // 1. CEK CACHE: Berdasarkan bulan dan tahun
+    const cacheKey = `jkt48_schedule_${year}_${month}`;
+    const cachedData = sessionStorage.getItem(cacheKey);
+
+    if (cachedData) {
+      const { data, timestamp } = JSON.parse(cachedData);
+      const isCacheValid = (Date.now() - timestamp) < 300000; // 5 menit
+
+      if (isCacheValid) {
+        if (scheduleRequestRef.current.id === requestId) {
+          setSchedules(data);
+          setLoading(false);
+        }
+        return; // STOP: Tidak perlu fetch ke server
+      }
+    }
+
     try {
+      // 2. FETCH SERVER: Jika cache kosong/kadaluarsa
       const response = await fetch(`/api/jkt48-schedules?month=${month}&year=${year}`, {
         headers: { Accept: "application/json" },
-        cache: "no-store",
         signal: controller.signal,
       });
 
       let payload;
-
       try {
         payload = await response.json();
       } catch {
@@ -92,7 +108,12 @@ export default function useSchedulePage() {
         return a.startTime.localeCompare(b.startTime);
       });
 
+      // 3. SIMPAN CACHE: Simpan hasil fetch segar
       if (scheduleRequestRef.current.id === requestId) {
+        sessionStorage.setItem(cacheKey, JSON.stringify({
+          data: normalized,
+          timestamp: Date.now()
+        }));
         setSchedules(normalized);
       }
     } catch (loadError) {

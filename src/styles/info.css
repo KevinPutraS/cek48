@@ -433,7 +433,7 @@
 
 .info-module-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -494,6 +494,11 @@
 .info-module-card--cyan {
   --info-module-accent: var(--orbit-cyan);
   --info-module-soft: rgba(66, 213, 245, 0.095);
+}
+
+.info-module-card--amber {
+  --info-module-accent: #f59e0b;
+  --info-module-soft: rgba(245, 158, 11, 0.10);
 }
 
 .info-module-card__top,

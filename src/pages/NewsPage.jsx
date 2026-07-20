@@ -17,6 +17,23 @@ export default function NewsPage() {
       setLoading(true);
       setError("");
       
+      // Kunci cache khusus untuk daftar berita halaman 1
+      const cacheKey = "jkt48_news_list_latest";
+      const cachedData = sessionStorage.getItem(cacheKey);
+
+      // 1. CEK CACHE: Gunakan jika ada dan umurnya kurang dari 5 menit (300.000 ms)
+      if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        const isCacheValid = (Date.now() - timestamp) < 300000;
+        
+        if (isCacheValid) {
+          setLatestNews(data);
+          setLoading(false);
+          return; // Langsung tampilkan, hentikan eksekusi fetch
+        }
+      }
+
+      // 2. FETCH KE SERVER: Jika cache kosong atau sudah lebih dari 5 menit
       const response = await fetch(`/api/jkt48-news?page=1`);
       const json = await response.json();
 
@@ -27,6 +44,12 @@ export default function NewsPage() {
       const allNews = json.data?.data || json.data;
       
       if (allNews && allNews.length > 0) {
+        // 3. SIMPAN CACHE: Simpan data terbaru beserta waktu fetch-nya
+        sessionStorage.setItem(cacheKey, JSON.stringify({
+          data: allNews,
+          timestamp: Date.now()
+        }));
+        
         setLatestNews(allNews);
       }
     } catch (err) {
@@ -60,7 +83,7 @@ export default function NewsPage() {
             <span><i></i>OFFICIAL ANNOUNCEMENT</span>
           </div>
           <h1>NEWS <span>UNIVERSE</span></h1>
-          <p>Dapatkan semua informasi terbaru dari JKT48, mulai dari Theater, Event, dan Digital Photobook.</p>
+          <p>Dapatkan semua informasi terbaru dari JKT48, mulai dari Theater, Merchandise, Event, dan Digital Photobook.</p>
         </section>
 
         {loading && <div className="nx-news-state-info"><span className="spinner"></span><p>Loading berita...</p></div>}

@@ -19,6 +19,22 @@ const MODULES = [
     ),
   },
   {
+    id: "news",
+    eyebrow: "LATEST NEWS",
+    title: "News",
+    description:
+      "Lihat seluruh pengumuman resmi JKT48 mulai dari theater, event, merchandise, hingga digital photobook.",
+    to: "/news",
+    accent: "amber",
+    features: ["Official News", "Announcement"],
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 4h14v16H5z" />
+        <path d="M8 8h8M8 12h8M8 16h5" />
+      </svg>
+    ),
+  },
+  {
     id: "members",
     eyebrow: "DIRECTORY",
     title: "Member",
@@ -172,8 +188,8 @@ export default function InfoPage() {
             </h1>
 
             <p>
-              CEK48 menyatukan monitor kuota, direktori member, dan jadwal dalam
-              pengalaman yang lebih cepat, jelas, dan nyaman dipakai dari layar kecil.
+              CEK48 menyatukan monitor kuota, berita resmi, direktori member, dan jadwal
+              dalam pengalaman yang lebih cepat, jelas, dan nyaman digunakan di semua perangkat.
             </p>
 
             <div className="info-hero__actions">
@@ -252,7 +268,7 @@ export default function InfoPage() {
               <span>EXPLORE CEK48</span>
               <h2 id="info-modules-title">Langsung ke yang kamu butuhkan.</h2>
             </div>
-            <p>Tiga halaman utama, satu bahasa visual yang konsisten.</p>
+            <p>Empat fitur utama dengan satu bahasa visual yang konsisten.</p>
           </header>
 
           <div className="info-module-grid">
