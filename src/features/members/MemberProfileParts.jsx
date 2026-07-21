@@ -26,7 +26,6 @@ export function MemberPhoto({ member, hero = false }) {
           alt={`Foto ${member.name}`}
           loading={hero ? "eager" : "lazy"}
           decoding="async"
-          fetchPriority={hero ? "high" : "low"}
           width={hero ? 720 : 320}
           height={hero ? 900 : 336}
           onError={() => setFailed(true)}

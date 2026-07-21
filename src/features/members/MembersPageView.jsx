@@ -1,4 +1,5 @@
 import TopBar from "../../components/TopBar";
+import LiveRadar from "./LiveRadar";
 import {
   ALL_TYPES,
   formatBirthday,
@@ -11,7 +12,7 @@ import {
 } from "./memberModel";
 import { MemberPhoto, ProfileStat } from "./MemberProfileParts";
 
-export default function MembersPageView({ directory }) {
+export default function MembersPageView({ directory, liveMembers, isLoading }) {
   const {
     birthdaySync,
     changeType,
@@ -59,6 +60,14 @@ export default function MembersPageView({ directory }) {
       />
 
       <main id="main-content" className="nx-page nx-members-page">
+
+        {/* --- LOGIKA LOADING RADAR --- */}
+        {isLoading ? (
+          <div className="radar-skeleton">Memindai sinyal live...</div> 
+        ) : (
+          <LiveRadar data={liveMembers} />
+        )}
+
         <section className="nx-members-hero nx-members-hero--redesign">
           <div className="nx-members-hero__copy">
             <span className="nx-kicker">MEMBER UNIVERSE</span>

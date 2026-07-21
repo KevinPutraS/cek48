@@ -1,0 +1,200 @@
+/* src/features/members/live-radar.css */
+
+/* --- UI BARU: MODERN GLASS RADAR (COMPACT / LEBIH KECIL) --- */
+
+/* Container Utama bergaya Glassmorphism */
+.cek-live-radar { 
+  width: 100%; 
+  padding: 1rem 1.25rem; /* Jarak atas-bawah diperkecil */
+  background: linear-gradient(145deg, rgba(255, 79, 154, 0.08), rgba(255, 79, 154, 0.02)); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 79, 154, 0.2); 
+  border-radius: 20px; /* Radius disesuaikan dengan ukuran box */
+  margin-bottom: 1.5rem; 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Bagian Header yang lebih rapi */
+.clr-header { 
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.8rem; /* Jarak header ke avatar dipersempit */
+}
+
+/* Badge NOW LIVE bergaya Pill */
+.clr-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 79, 154, 0.15);
+  padding: 0.25rem 0.6rem; /* Kotak tulisan NOW LIVE diperkecil */
+  border-radius: 20px;
+  width: fit-content;
+  border: 1px solid rgba(255, 79, 154, 0.3);
+}
+
+.clr-live-indicator h2 {
+  font-size: 0.75rem; /* Ukuran font dikecilkan */
+  font-weight: 800;
+  color: #ff4f9a;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.clr-subtitle {
+  font-size: 0.7rem; /* Font sub-judul lebih proporsional */
+  color: #a0a0a0;
+  margin: 0;
+  padding-left: 0.2rem;
+}
+
+/* Titik Kedap-kedip Animasi (Pulse) dengan Glow */
+.clr-pulse-dot { 
+  width: 6px; /* Ukuran titik disesuaikan */
+  height: 6px; 
+  background-color: #ff4f9a; 
+  border-radius: 50%; 
+  box-shadow: 0 0 6px #ff4f9a;
+  animation: clrPulse 1.5s infinite ease-in-out; 
+}
+
+/* Layout Baris Avatar */
+.clr-avatar-row { 
+  display: flex; 
+  gap: 1rem; /* Jarak antar avatar lebih rapat */
+  overflow-x: auto; 
+  padding-bottom: 0.5rem; /* Ruang scrollbar bawah dipangkas */
+  padding-top: 0.25rem; 
+}
+
+/* Sembunyikan scrollbar agar lebih rapi di HP */
+.clr-avatar-row::-webkit-scrollbar { display: none; }
+.clr-avatar-row { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Pembungkus Masing-masing Member */
+.clr-avatar-wrapper { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 0.4rem; /* Jarak dari foto ke nama di bawahnya dipersempit */
+  text-decoration: none; 
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efek Bouncing saat avatar di-hover/disentuh */
+.clr-avatar-wrapper:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Container khusus untuk cincin & badge agar bisa overlap */
+.clr-avatar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cincin Gradasi di Luar Foto */
+.clr-avatar-ring { 
+  width: 52px; /* UKURAN AVATAR DIPERKECIL (sebelumnya 68px) */
+  height: 52px; 
+  border-radius: 50%; 
+  padding: 2.5px; /* Ketebalan cincin disesuaikan */
+  background: linear-gradient(45deg, #ff4f9a, #806cff, #ff4f9a); 
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(255, 79, 154, 0.2);
+}
+
+/* Foto Profil Member */
+.clr-avatar-ring img { 
+  width: 100%; 
+  height: 100%; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 2px solid #1a1a1a; 
+}
+
+/* Teks Nama */
+.clr-name { 
+  font-size: 0.75rem; /* Font nama sedikit dikecilkan */
+  color: #fff; 
+  font-weight: 600; 
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Label Platform (Floating Overlap) */
+.clr-platform-floating { 
+  position: absolute;
+  bottom: -6px; /* Posisi nempel disesuaikan */
+  font-size: 0.5rem; /* Font platform dikecilkan */
+  color: #fff; 
+  padding: 0.15rem 0.4rem; 
+  border-radius: 10px; 
+  text-transform: uppercase; 
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  border: 2px solid #1a1a1a; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+/* --- ANIMASI --- */
+@keyframes clrPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 79, 154, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 79, 154, 0); }
+}   
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- SKELETON LOADING --- */
+.radar-skeleton {
+  width: 100%;
+  height: 110px; /* Tinggi loading dikecilkan agar match dengan ukuran Radar baru */
+  background: linear-gradient(90deg, #121212 25%, #242424 50%, #121212 75%);
+  background-size: 200% 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 79, 154, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #888;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  animation: radarShimmer 1.5s infinite linear;
+}
+
+.radar-skeleton::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 2px solid #333;
+  border-top: 2px solid #ff4f9a;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  animation: radarSpin 1s linear infinite;
+}
+
+@keyframes radarShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes radarSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
